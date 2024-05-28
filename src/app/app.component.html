@@ -1,0 +1,41 @@
+<html lang="en" ng-app="Angular-Simple-Front">
+  <head>
+    <meta name="viewport" content="initial-scale=1" />
+  </head>
+  <body layout="column" ng-controller="AppCtrl">
+    <mat-toolbar layout="row">
+      <div class="mat-toolbar-tools">
+        <h1>Hallo, {{ user?.name }}</h1>
+      </div>
+    </mat-toolbar>
+
+    <mat-card class="form-card">
+      <mat-card-content>
+        <mat-card-title>Basisdaten</mat-card-title>
+        <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Name</mat-label>
+            <input matInput name="name" ngModel required />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" ngModel required email/>
+            <mat-error *ngIf="userForm.controls['email']?.invalid && userForm.controls['email']?.touched">
+              Bitte eine gültige Email-Adresse eingeben.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Alter</mat-label>
+            <input matInput type="number" name="age" ngModel required/>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit">
+            Absenden
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </body>
+</html>
